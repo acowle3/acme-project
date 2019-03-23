@@ -2,8 +2,9 @@
       script:
         - apt-get update -qq && apt-get install -y -qq lftp
         - lftp -c "set ftp:ssl-allow no; open -u $USERNAME,$PASSWORD $HOST; mirror -Rnev ./ ./public_html/acme --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/"
-        - apt-get install default-mysql-client
+        - apt-get install -y default-mysql-client
         - Y
         - mysql -h "localhost" -P 3306 -u "rebecca1_iClient" -p "!ZXFQ25#A0?e"
+        - mysql "acme" < "./acme-db.sql"
       only:
         - master
