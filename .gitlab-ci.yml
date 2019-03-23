@@ -8,5 +8,7 @@
       - ssh-add <(echo "$SSH_PRIVATE_KEY")
       - mkdir -p ~/.ssh
       - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      script:
+        - ssh bitnami@104.197.171.107 "cd htdocs && git checkout master && git pull origin master && exit"
       only:
         - master
