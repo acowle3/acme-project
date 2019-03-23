@@ -1,8 +1,12 @@
   deploy:
-      script:
-        - apt-get update -qq && apt-get install -y -qq lftp
-        - lftp -c "set ftp:ssl-allow no; open -u $USERNAME,$PASSWORD $HOST; mirror -Rnev ./ ./public_html/acme --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/"
-        - apt-get install -y default-mysql-client
-        - mysql --user="${DB_USER}" --password="${DB_PASSWORD}" --host="${DB_HOST}" "${DB_DATABASE}" < ./acme-db.sql
+      before_script:
+      - apt-get update -qq
+      - apt-get install -qq git
+      # Setup SSH deploy keys
+      - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+      - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SSH_PRIVATE_KEY")
+      - mkdir -p ~/.ssh
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       only:
         - master
