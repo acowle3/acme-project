@@ -3,7 +3,7 @@
         - apt-get update -qq && apt-get install -y -qq lftp
         - lftp -c "set ftp:ssl-allow no; open -u $USERNAME,$PASSWORD $HOST; mirror -Rnev ./ ./public_html/acme --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/"
         - apt-get install -y default-mysql-client
-        - mysql -h "77.104.157.243" -P 3306 -u "rebecca1_iClient" -p "!ZXFQ25#A0?e"
-        - mysql "rebecca1_acme" < "./acme-db.sql"
+        - mysql -h $DB_HOST -P 3306 -u $DB_USER -p $DB_PASSWORD
+        - mysql $DB_DATABASE < "./acme-db.sql"
       only:
         - master
