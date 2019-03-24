@@ -6,6 +6,6 @@
        - mkdir -p ~/.ssh
        - chmod 700 ~/.ssh
       script:
-        - ssh bitnami@104.197.171.107 "cd htdocs && git checkout master && git pull origin master && exit"
+        - ssh bitnami@104.197.171.107 "cd htdocs && git clone https://gitlab.com/idahogurl/acme2.git && git checkout master && git pull origin master && exit"
       only:
         - master
