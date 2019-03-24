@@ -5,6 +5,7 @@
        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
        - mkdir -p ~/.ssh
        - chmod 700 ~/.ssh
+       - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       script:
         - ssh bitnami@104.197.171.107 "cd htdocs && git clone https://gitlab.com/idahogurl/acme2.git && git checkout master && git pull origin master && exit"
       only:
