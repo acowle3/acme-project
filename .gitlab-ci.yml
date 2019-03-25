@@ -8,6 +8,6 @@
        - ssh-keyscan codehouse.dev >> ~/.ssh/known_hosts
        - chmod 644 ~/.ssh/known_hosts
       script:
-        - ssh bitnami@codehouse.dev "cd htdocs && cp -a ./. /acme/ && exit"
+        - ssh bitnami@codehouse.dev "cd htdocs && sudo cp -a ./. /acme/ && exit"
       only:
         - master
