@@ -5,7 +5,6 @@
        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
        - mkdir -p ~/.ssh
        - chmod 700 ~/.ssh
-       - ssh-keygen -R 104.197.171.107
        - ssh-keyscan codehouse.dev >> ~/.ssh/known_hosts
        - chmod 644 ~/.ssh/known_hosts
       script:
