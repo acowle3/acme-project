@@ -7,6 +7,6 @@
        - chmod 700 ~/.ssh
        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       script:
-        - ssh bitnami@104.197.171.107 "cd htdocs && cp ./ ./acme && exit"
+        - ssh bitnami@104.197.171.107 "cd htdocs && cp -r ./ ./acme && exit"
       only:
         - master
