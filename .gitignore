@@ -2,4 +2,5 @@
 .DS_Store
 __MACOSX
 images
-uploads/products
+uploads/*.jpg
+uploads/*.png

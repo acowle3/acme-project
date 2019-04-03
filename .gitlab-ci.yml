@@ -1,4 +1,4 @@
-  deploy:
+deploy:
       before_script:
        - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
        - eval $(ssh-agent -s)
@@ -9,6 +9,8 @@
        - chmod 644 ~/.ssh/known_hosts
        - apt-get update -qq && apt-get install -y -qq rsync
       script:
-        - rsync -av -e ssh --exclude='*.git' ./ bitnami@104.197.171.107:./htdocs/$USER_acme/
+        - DIR="./htdocs/${USER}_acme/"
+        - echo $DIR
+        - rsync -av -e ssh --exclude='*.git' ./ bitnami@104.197.171.107:$DIR
       only:
         - master
