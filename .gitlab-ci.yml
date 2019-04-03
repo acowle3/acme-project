@@ -9,6 +9,6 @@
        - chmod 644 ~/.ssh/known_hosts
        - apt-get update -qq && apt-get install -y -qq rsync
       script:
-        - rsync -av -e ssh --exclude='*.git' ./ bitnami@104.197.171.107:./htdocs/acme/
+        - rsync -av -e ssh --exclude='*.git' ./ bitnami@104.197.171.107:./htdocs/$USER_acme/
       only:
         - master
