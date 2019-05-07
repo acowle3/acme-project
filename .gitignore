@@ -4,3 +4,4 @@ __MACOSX
 images
 uploads/*.jpg
 uploads/*.png
+/nbproject/private/

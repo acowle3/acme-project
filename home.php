@@ -6,20 +6,7 @@
 </head>
 <body>
     <div id="the-body">
-    <header>
-        <img src="images/site/logo.gif" alt="logo" id='logo'>
-        <a href='#' id="account-link"><img src="images/site/account.gif" alt='account'id='account'>My Account</a>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Canon</a></li>
-            <li><a href="#">Explosive</a></li>
-            <li><a href="#">Misc</a></li>
-            <li><a href="#">Rocket</a></li>
-            <li><a href="#">Trap</a></li>
-        </ul>
-    </nav>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/header.php'; ?>
         <main>
             <h1>Welcome to Acme!</h1>
             <div class="hero">
@@ -51,14 +38,9 @@
                 <div class="recipe"><div class="recipeimage"><img src="images/recipes/taco.jpg" alt="taco"></div><a href="#">Roadrunner Tacos</a></div>
             </div>
             </div>
-        </div>
+        
         </main>
-    <footer>
-        <hr>
-        <p>&#169; ACME, All rights reserved.</p>
-        <p>All images used are believed to be in "Fair Use". Please notify the author if any are not and they will be removed.</p>
-        <p>Last Updated: 17 January, 2018</p>
-    </footer>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/footer.php'; ?>
     </div>
 </body>
     
