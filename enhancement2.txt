@@ -1,0 +1,14 @@
+https://youtu.be/wsZyDxUEvVo
+
+Insert into acme.clients (clientFirstName, clientLastName, clientEmail, clientPassword) values ("Tony", "Stark", "tony@sadlf.com", "soisoisoisoisoi")
+
+update acme.clients set clientLevel = '3' where clientId = 0
+
+update acme.inventory set invName = Replace('Nylon Rope', 'Nylon Rope', 'Climbing Rope'), invDescription = Replace(invDescription, 'nylon rope', 'climbing rope') where invId = 15
+
+
+select acme.inventory.invName, acme.categories.categoryName
+FROM acme.inventory
+INNER JOIN acme.categories ON acme.inventory.categoryId = 3 AND acme.inventory.categoryId = acme.categories.categoryId;
+
+DELETE FROM acme.inventory WHERE invId = 7;
