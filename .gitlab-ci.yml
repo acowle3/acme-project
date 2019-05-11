@@ -11,8 +11,7 @@ deploy:
       script:
         - DIR="./htdocs/${USER}-acme/"
         - echo $DIR
-        - rsync -av -e ssh --exclude='*.git' ./ bitnami@104.197.171.107:$DIR
+        - rsync -av -e ssh --exclude='*.git' --exclude='*.yml' --delete  ./ bitnami@104.197.171.107:$DIR
       only:
         - master
         - peer-review
-
