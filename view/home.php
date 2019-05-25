@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <title></title>
-</head>
-<body>
-    <div id="the-body">
+
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/header.php'; ?>
         <main>
             <h1>Welcome to Acme!</h1>
@@ -16,13 +9,13 @@
                         <li>Quick lighting fuse</li>
                         <li>NHTSA approved seat belts</li>
                         <li>Mobile launch stand included</li>
-                        <li><a href="#"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
+                        <li><a href="#" title="add to cart"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
                     </ul>
                 
             </div>
             <div class="reviews-and-recipes">
             <div class="reviews">
-                <h4>Acme Rocket Reviews</h4>
+                <h2>Acme Rocket Reviews</h2>
                 <ul>
                     <li>"I don't know how I ever caught roadrunners before this." (4/5)</li>
                     <li>"That thing was fast!" (4/5)</li>
@@ -41,8 +34,3 @@
         
         </main>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/footer.php'; ?>
-    </div>
-</body>
-    
-</body>
-</html>
