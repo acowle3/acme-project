@@ -9,7 +9,7 @@
                         <li>Quick lighting fuse</li>
                         <li>NHTSA approved seat belts</li>
                         <li>Mobile launch stand included</li>
-                        <li><a href="#"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
+                        <li><a href="#" title="add to cart"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
                     </ul>
                 
             </div>

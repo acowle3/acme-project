@@ -7,7 +7,6 @@
 
  
  $categories = getCategories();
- 
 
  
 $action = filter_input(INPUT_POST, 'action');
