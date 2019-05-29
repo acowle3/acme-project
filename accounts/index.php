@@ -16,11 +16,11 @@ $action = filter_input(INPUT_POST, 'action');
  
  switch ($action){
 case 'login':
-    include 'view/login.php';
+    include '../view/login.php';
     break;
 
 case 'register':
-    include 'view/registration.php';
+    include '../view/registration.php';
     break;
  default:
   include '../view/home.php';
