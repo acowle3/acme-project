@@ -7,7 +7,7 @@ function acmeConnect(){
             // Running on local server
             $dbname= 'acme';
             $username = 'iClient';
-            $password = 'fCXxC7CW7TVU9HxH';
+            $password = 'p@$$w0rd';
           } else {
             // Running on remote server
             $dbname= 'cow12005_acme'; // [BYU-I username]_acme
