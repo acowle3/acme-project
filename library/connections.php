@@ -12,7 +12,7 @@ function acmeConnect(){
             // Running on remote server
             $dbname= 'cow12005_acme'; // [BYU-I username]_acme
             $username = 'cow12005_iClient'; // [BYU-I username]_iClient
-            $password = 'cow12005_iClient'; // [BYU-I username]_Pwd
+            $password = 'cow12005_Pwd'; // [BYU-I username]_Pwd
           }
  $dsn = "mysql:host=$server;dbname=$dbname";
  $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
