@@ -1,17 +1,18 @@
+image: thywolf/alpine-openssh-client
 deploy:
-      before_script:
-       - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-       - eval $(ssh-agent -s)
-       - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-       - mkdir -p ~/.ssh
-       - chmod 700 ~/.ssh
-       - ssh-keyscan 104.197.171.107 >> ~/.ssh/known_hosts
-       - chmod 644 ~/.ssh/known_hosts
-       - apt-get update -qq && apt-get install -y -qq rsync
-      script:
-        - DIR="./htdocs/${USER}-acme/"
-        - echo $DIR
-        - rsync -av -e ssh --exclude='*.git' --exclude='*.yml' --delete  ./ bitnami@104.197.171.107:$DIR
-      only:
-        - master
-        - peer-review
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan 104.197.171.107 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - DIR="./htdocs/${USER}-acme"
+    - echo $DIR
+    - ssh bitnami@104.197.171.107 "rm -rf $DIR; mkdir $DIR"
+    - scp -r ./* bitnami@104.197.171.107:$DIR
+  only:
+    - master
+    - peer-review
+
