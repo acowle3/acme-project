@@ -7,7 +7,7 @@ function acmeConnect(){
             // Running on local server
             $dbname= 'acme';
             $username = 'iClient';
-            $password = 'p@$$w0rd';
+            $password = 'NmkDzy1LQU8JcU7o';
           } else {
             // Running on remote server
             $dbname= 'cow12005_acme'; // [BYU-I username]_acme
@@ -22,7 +22,7 @@ function acmeConnect(){
   $link = new PDO($dsn, $username, $password, $options);
   return $link;
  } catch(PDOException $e) {
-  header('Location: /acme/view/500.php');
+  header('Location: /cow12005-acme/view/500.php');
   exit;
  }
 }

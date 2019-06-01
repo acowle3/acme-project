@@ -7,7 +7,7 @@
             echo $message;
             }
 ?>
-        <form method="post" action="/acme/accounts/index.php">
+        <form method="post" action="/cow12005-acme/accounts/index.php">
             <input type="text" name="clientFirstname" placeholder="First Name"><br>
             <input type="text" name="clientLastname" placeholder="Last Name"><br>
             <input type="email" name="clientEmail" id="clientEmail" placeholder="email"><br>

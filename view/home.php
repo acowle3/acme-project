@@ -25,10 +25,10 @@
                 </ul>
             </div>
             <div class="recipes">
-                <div class="recipe"><div class="recipeimage"><img src="images/recipes/bbqsand.jpg" alt="sandwich"></div><a href="#">Pulled Roadrunner BBQ</a></div>
-                <div class="recipe"><div class="recipeimage"><img src="images/recipes/potpie.jpg" alt="potpie"></div><a href="#">Roadrunner Pot Pie</a></div>
-                <div class="recipe"><div class="recipeimage"><img src="images/recipes/soup.jpg" alt="soup"></div><a href="#">Roadrunner Soup</a></div>
-                <div class="recipe"><div class="recipeimage"><img src="images/recipes/taco.jpg" alt="taco"></div><a href="#">Roadrunner Tacos</a></div>
+                <div class="recipe"><div class="recipeimage"><img src="/cow12005-acme/images/recipes/bbqsand.jpg" alt="sandwich"></div><a href="#">Pulled Roadrunner BBQ</a></div>
+                <div class="recipe"><div class="recipeimage"><img src="/cow12005-acme/images/recipes/potpie.jpg" alt="potpie"></div><a href="#">Roadrunner Pot Pie</a></div>
+                <div class="recipe"><div class="recipeimage"><img src="/cow12005-acme/images/recipes/soup.jpg" alt="soup"></div><a href="#">Roadrunner Soup</a></div>
+                <div class="recipe"><div class="recipeimage"><img src="/cow12005-acme/images/recipes/taco.jpg" alt="taco"></div><a href="#">Roadrunner Tacos</a></div>
             </div>
             </div>
         

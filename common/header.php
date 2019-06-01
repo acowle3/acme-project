@@ -10,16 +10,16 @@
 <header>
         <img src="/cow12005-acme/images/site/logo.gif" alt="logo" id='logo'>
         <div id="account-link">
-        <a href='/cow12005-acme/accounts/index.php?action=login' id="login-link" title="login"><img src="/cow12005-acme/images/site/account.gif" alt='account'id='account'>Login</a>
-        <a href='/cow12005-acme/accounts/index.php?action=register' title="register" id="register-link">Register</a>
+        <a href='/cow12005-acme/accounts/index.php?action=login-page' id="login-link" title="login"><img src="/cow12005-acme/images/site/account.gif" alt='account'id='account'>Login</a>
+        <a href='/cow12005-acme/accounts/index.php?action=register-page' title="register" id="register-link">Register</a>
         </div>
     </header>
     <nav>
         <?php 
         $navList = '<ul>';
-        $navList .= "<li><a href='/acme/index.php' title='View the Acme home page'>Home</a></li>";
+        $navList .= "<li><a href='/cow12005-acme/index.php' title='View the Acme home page'>Home</a></li>";
  foreach ($categories as $category) {
-  $navList .= "<li><a href='/acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
+  $navList .= "<li><a href='/cow12005-acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
  }
  $navList .= '</ul>';
  echo $navList;
