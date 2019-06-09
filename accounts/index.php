@@ -4,7 +4,7 @@
  // Get the acme model for use as needed
  require_once '../model/acme-model.php';
 require_once '../model/accounts-model.php';
- 
+ require_once '../library/functions.php';
  $categories = getCategories();
  
 
@@ -24,20 +24,21 @@ case 'register-page':
     break;
 case 'register':
 // Filter and store the data
-    $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-    $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-    $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-    $clientPassword = filter_input(INPUT_POST, 'clientPassword');
-
+    $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
+    $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
+    $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+    $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
+    $checkEmail = checkEmail($clientEmail);
+    $checkPassword = checkPassword($clientPassword);
 // Check for missing data
-    if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
+    if(empty($clientFirstname) || empty($clientLastname) || empty($checkEmail) || empty($checkPassword)){
         $message = '<p>Please provide information for all empty form fields.</p>';
         include '../view/registration.php';
         exit;
     }
-
+    $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
     // Send the data to the model
-    $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+    $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 
     // Check and report the result
     if($regOutcome === 1){
@@ -50,6 +51,18 @@ case 'register':
         exit;
     }
     break;
+case 'login': 
+    $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+    $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
+    $checkEmail = checkEmail($clientEmail);
+    $checkPassword = checkPassword($clientPassword);
+// Check for missing data
+    if(empty($checkEmail) || empty($checkPassword)){
+        $message = '<p>Please provide information for all empty form fields.</p>';
+        include '../view/registration.php';
+        exit;
+    }
+
  default:
   include '../view/home.php';
 }
