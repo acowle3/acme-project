@@ -1,11 +1,12 @@
 <?php
-
+session_start();
  require_once '../library/connections.php';
  // Get the acme model for use as needed
  require_once '../model/acme-model.php';
   require_once '../model/products-model.php';
 require_once '../library/functions.php';
  
+
  $categories = getCategories();
  
 $action = filter_input(INPUT_POST, 'action');
@@ -17,9 +18,7 @@ $action = filter_input(INPUT_POST, 'action');
  }
  
  switch($action) {
-    case 'list':
-        include '../view/list-products.php';
-        break;
+
     case 'add-product-form':
         include '../view/add-product.php';
         break;
@@ -74,5 +73,10 @@ $action = filter_input(INPUT_POST, 'action');
         include '../view/add-category.php';
         exit;
     }
+        break;
+    default:
+        
+        
+        include '../view/list-products.php';
         break;
 }
