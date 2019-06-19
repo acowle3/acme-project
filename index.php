@@ -3,9 +3,10 @@
  require_once 'library/connections.php';
  // Get the acme model for use as needed
  require_once 'model/acme-model.php';
+ require_once 'library/functions.php';
 
  
- $categories = getCategories();
+ 
 
  
 $action = filter_input(INPUT_POST, 'action');

@@ -17,7 +17,7 @@
 ?>
         <form method="post" action="/cow12005-acme/products/index.php">
             <label for="categoryName">Name of New Category</label>
-            <input type="text" name="categoryName" placeholder="Name of Category"><br>
+            <input type="text" name="categoryName" placeholder="Name of Category" <?php if(isset($categoryName)){echo "value='$categoryName'";}  ?> required><br>
             <input type="submit" name="submit" id="insertProduct" value="Save Category">
             <input type="hidden" name="action" value="add-category">
         </form></main>
