@@ -29,4 +29,5 @@ function createCatDropdown() {
         $dropdownMenu .= '<option value="'.$category['categoryId'].'">'.$category['categoryName']."</option>";
     }
     $dropdownMenu .= '</select>';
+    return $dropdownMenu;
 }
