@@ -5,6 +5,7 @@
     <main><h1>Add Product</h1>
         
         <?php
+        //
             if (isset($message)) {
             echo $message;
             }

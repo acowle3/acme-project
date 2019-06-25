@@ -1,6 +1,5 @@
 <?php
 
-
 function checkEmail($clientEmail){
  $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
  return $valEmail;
@@ -23,11 +22,42 @@ function createNavbar() {
 }
 
 function createCatDropdown() {
-    $categories = getCategories();
-    $dropdownMenu = "<select name='categoryId' id='categoryId' required>";
-    foreach($categories as $category) {
-        $dropdownMenu .= '<option value="'.$category['categoryId'].'">'.$category['categoryName']."</option>";
+     $categories = getCategories();
+    
+    // Build the categories option list
+    $catList = '<select name="categoryId" id="categoryId">';
+    $catList .= "<option>Choose a Category</option>";
+    foreach ($categories as $category) {
+        $catList .= "<option value='$category[categoryId]'";
+        if(isset($catType)){
+            if($category['categoryId'] === $catType){
+                $catList .= ' selected ';
+            }
+        } elseif(isset($prodInfo['categoryId'])){
+            if($category['categoryId'] === $prodInfo['categoryId']){
+                $catList .= ' selected ';
+            }
+        }
+        $catList .= ">$category[categoryName]</option>";
     }
-    $dropdownMenu .= '</select>';
-    return $dropdownMenu;
+    $catList .= '</select>';
+    return $catList;
+}
+
+function createCatDropdownSelected($catType) {
+     $categories = getCategories();
+    
+    // Build the categories option list
+    $catList = '<select name="categoryId" id="categoryId">';
+    $catList .= "<option>Choose a Category</option>";
+    foreach ($categories as $category) {
+        $catList .= "<option value='$category[categoryId]'";
+        
+            if($category['categoryId'] === $catType){
+                $catList .= ' selected ';
+            }
+        $catList .= ">$category[categoryName]</option>";
+    }
+    $catList .= '</select>';
+    return $catList;
 }

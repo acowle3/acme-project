@@ -40,6 +40,7 @@ function checkExistingEmail($clientEmail) {
     }
 }
 
+
 function getClient($clientEmail){
     $db = acmeConnect();
     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword 
@@ -51,4 +52,38 @@ function getClient($clientEmail){
     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $clientData;
+}
+
+function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId){
+    $db = acmeConnect();
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+   // Close the database interaction
+   $stmt->closeCursor();
+   // Return the indication of success (rows changed)
+   return $rowsChanged;
+}
+
+function updateClientPassword($password, $clientId) {
+    $db = acmeConnect();
+    $sql = 'UPDATE clients SET clientPassword = :password WHERE clientId = :clientId';
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+   // Close the database interaction
+   $stmt->closeCursor();
+   // Return the indication of success (rows changed)
+   return $rowsChanged;
 }

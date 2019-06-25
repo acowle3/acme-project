@@ -2,6 +2,7 @@
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/header.php'; ?>
     <?php 
+    //
     $dropdownMenu = "<select name='categoryId' id='categoryId' required>";
     foreach($categories as $category) {
         $dropdownMenu .= '<option value="'.$category['categoryId'].'">'.$category['categoryName']."</option>";

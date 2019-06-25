@@ -8,12 +8,12 @@ require_once '../model/accounts-model.php';
  $categories = getCategories();
  
 
- 
+
 $action = filter_input(INPUT_POST, 'action');
  if ($action == NULL){
   $action = filter_input(INPUT_GET, 'action');
  }
- 
+  echo $action;
  switch ($action){
 case 'login-page':
     include '../view/login.php';
@@ -104,6 +104,76 @@ case "logout":
 case "admin":
     include '../view/admin.php';
     break;
+case "edit-user":
+    include '../view/client-update.php';
+    break;
+case "update-client":
+    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $oldEmail = filter_input(INPUT_POST, 'old-email', FILTER_SANITIZE_EMAIL);
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $checkEmail = checkEmail($email);
+// Check for missing data
+    if(empty($firstName) || empty($lastName) || empty($email)){
+        $message = '<p>Please provide information for all empty form fields.</p>';
+        include '../view/client-update.php';
+        exit;
+    }
+    if($oldEmail != $email) {
+        $existingEmail = checkExistingEmail($email);
+
+    // Check for existing email address in the table
+        if($existingEmail){
+            $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+    }
+    // Send the data to the model
+    $regOutcome = updateClient($firstName, $lastName, $email, $clientId);
+
+    // Check and report the result
+    if($regOutcome === 1){
+        $message = "<p>User changed successfully";
+        $clientData = getClient($email);
+        $_SESSION['clientData'] = $clientData;
+        include '../view/admin.php';
+        exit;
+    } else {
+        $message = "<p>Edit failed</p>";
+        include '../view/client-update.php';
+        exit;
+    }
+    break;
+    
+case 'update-password':
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $email = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+    $checkPassword = checkPassword($password);
+    if(empty($checkPassword) ) {
+        $message = '<p>Please provide information for all empty form fields.</p>';
+        include '../view/client-update.php';
+        exit;
+    }
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $regOutcome = updateClientPassword($hashedPassword, $clientId);
+
+    // Check and report the result
+    if($regOutcome === 1){
+        $message = "<p>User changed successfully";
+        $clientData = getClient($clientEmail);
+        $_SESSION['clientData'] = $clientData;
+        include '../view/admin.php';
+        exit;
+    } else {
+        $message = "<p>Edit failed</p>";
+        include '../view/client-update.php';
+        exit;
+    }
+    
+    break;
 default:
-        include '../view/home.php';
+        include '../view/500.php';
 }
