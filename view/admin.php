@@ -20,5 +20,10 @@ $clientId = $_SESSION['clientData']['clientId'];
 <p>Email: <?php echo $email; ?></p>
 <p>User Level: <?php echo $level; ?></p>
 <a href="/cow12005-acme/accounts/?action=edit-user">Edit User Account</a>
+<?php 
+if($level > 1) {
+    echo '<a href="/cow12005-acme/products">Edit Products</a>';
+}
+?>
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/footer.php'; ?>

@@ -99,7 +99,7 @@ case 'login':
     exit;
 case "logout":
     session_destroy();
-    include '../view/home.php';
+    header('location: /cow12005-acme/');
     break;
 case "admin":
     include '../view/admin.php';
