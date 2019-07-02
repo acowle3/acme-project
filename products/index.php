@@ -136,6 +136,32 @@ $action = filter_input(INPUT_POST, 'action');
                 exit;
         }
         break;
+    case 'category':
+        $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);
+        $products = getProductsByCategory($categoryName);
+        if(!count($products)){
+            $message = "<p class='notice'>Sorry, no $categoryName products could be found.</p>";
+        } else {
+            $prodDisplay = buildProductsDisplay($products);
+        }
+        include '../view/category.php';
+        break;
+    case 'product':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        if (empty($invId)) {
+            $message = '<p>No Item Selected.</p>';
+            include '../view/product-page.php';
+            exit;
+        }
+        $prodInfo = getProductInfo($invId);
+        if (empty($prodInfo)) {
+            $message = '<p>No Item Selected.</p>';
+            include '../view/product-page.php';
+            exit;
+        }
+        $prodPage = productPageBuild($prodInfo);
+        include '../view/product-page.php';
+        break;
     default:
         $products = listProducts();
         if(count($products) > 0){
