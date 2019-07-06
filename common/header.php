@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/cow12005-acme/css/main.css">
-    <title>Acme Inc</title>
+    <title><?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($invName)) { echo $invName; }?> | Acme, Inc</title>
 </head>
 <body>
     <div id="the-body">
@@ -14,7 +14,7 @@
             
             if (!empty($_SESSION['loggedin'])) {
                 echo "<span>Welcome ".$_SESSION['clientData']['clientFirstname']."</span>";
-                echo '<a href="/cow12005-acme/accounts/index.php?action=admin" id="admin-stuff" title="admin"><img src="/cow12005-acme/images/site/account.gif" alt="account"id="account">Account</a> | ';
+                echo '<a href="/cow12005-acme/accounts/index.php?action=admin" id="admin-stuff" title="admin"><img src="/cow12005-acme/images/site/account.gif" alt="account" id="account">Account</a> | ';
                 echo '<a href="/cow12005-acme/accounts/index.php?action=logout" title="logout">logout</a>';
             }
             else {
