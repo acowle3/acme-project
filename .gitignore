@@ -1,7 +1,5 @@
 .vscode/*
 .DS_Store
 __MACOSX
-images
 uploads/*.jpg
 uploads/*.png
-/nbproject/private/
