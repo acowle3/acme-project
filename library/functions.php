@@ -15,7 +15,7 @@ function createNavbar() {
     $navList = '<ul>';
     $navList .= "<li><a href='/cow12005-acme/index.php' title='View the Acme home page'>Home</a></li>";
  foreach ($categories as $category) {
-  $navList .= "<li><a href='/cow12005-acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
+  $navList .= "<li><a href='/cow12005-acme/products/index.php?action=category&categoryName=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
  }
  $navList .= '</ul>';
  return $navList;
@@ -60,4 +60,33 @@ function createCatDropdownSelected($catType) {
     }
     $catList .= '</select>';
     return $catList;
+}
+
+function buildProductsDisplay($products){
+    $pd = '<ul id="prod-display">';
+    foreach ($products as $product) {
+        $pd .= '<li>';
+        $pd .= "<img src='$product[invThumbnail]' alt='Image of $product[invName] on Acme.com'>";
+        $pd .= '<hr>';
+        $pd .= "<h2><a href='/cow12005-acme/products?action=product&invId=$product[invId]'>$product[invName]</a></h2>";
+        $pd .= "<span>$product[invPrice]</span>";
+        $pd .= '</li>';
+    }
+    $pd .= '</ul>';
+    return $pd;
+}
+
+function productPageBuild($prodInfo) {
+    $pd =  '<div class="product-page">';
+    $pd .= '<h1>'.$prodInfo['invName'].'</h1>';
+    $pd .= '<div id="divide">';
+    $pd .= '<img alt="Product" src='.$prodInfo['invImage'].'>';
+    $pd .= '<div>';
+    $pd .= '<p>'.$prodInfo['invDescription'].'</p>';
+    $pd .= '<p>Sold by '.$prodInfo['invVendor'].'</p>';
+    $pd .= '<p>Weight: '.$prodInfo['invWeight'].'</p>';
+    $pd .= '<p>Number In Stock: '.$prodInfo['invStock'].'</p>';
+    $pd .= '</div>';
+    $pd .= '</div>';
+    return $pd;
 }
