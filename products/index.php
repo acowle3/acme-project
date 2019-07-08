@@ -5,7 +5,7 @@ session_start();
  require_once '../model/acme-model.php';
   require '../model/products-model.php';
 require '../library/functions.php';
- 
+ require '../model/uploads-model.php';
 
  $categories = getCategories();
  
@@ -159,6 +159,7 @@ $action = filter_input(INPUT_POST, 'action');
             include '../view/product-page.php';
             exit;
         }
+
         $prodPage = productPageBuild($prodInfo);
         include '../view/product-page.php';
         break;
