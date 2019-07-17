@@ -125,6 +125,12 @@ footer {
  height: 200px;
 }
 
+#divide {
+        display: flex;
+        flex-direction: row;
+}
+
+
 @media only screen and (min-width: 800px) {
     .reviews-and-recipes {
     display: flex;
@@ -147,9 +153,6 @@ footer {
         max-height: 400px;
     }
     
-    #divide {
-        display: flex;
-        flex-direction: row;
-    }
+    
     
 }
