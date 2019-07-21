@@ -87,3 +87,16 @@ function updateClientPassword($password, $clientId) {
    // Return the indication of success (rows changed)
    return $rowsChanged;
 }
+
+function getClientUserName($clientId) {
+    $db = acmeConnect();
+    $sql = 'SELECT clientFirstname, clientLastname
+        FROM clients
+        WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $clientData;
+}

@@ -6,7 +6,9 @@ session_start();
   require '../model/products-model.php';
 require '../library/functions.php';
  require '../model/uploads-model.php';
+   require_once '../model/reviews-model.php';
 
+   
  $categories = getCategories();
  
 $action = filter_input(INPUT_POST, 'action');
@@ -159,7 +161,8 @@ $action = filter_input(INPUT_POST, 'action');
             include '../view/product-page.php';
             exit;
         }
-
+        $reviews = listReviews($invId);
+        $prodReviews = createReviewList($reviews);
         $prodPage = productPageBuild($prodInfo);
         include '../view/product-page.php';
         break;

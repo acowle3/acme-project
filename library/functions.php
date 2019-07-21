@@ -97,6 +97,14 @@ function productPageBuild($prodInfo) {
     $pd .= '</div>';
     $pd .= '</div>';
     $pd .= '</div>';
+    if(!empty($_SESSION['loggedin'])) {
+        $pd .= '<form method="post" action="/cow12005-acme/reviews/index.php">
+            <input type="hidden" name="action" value="add-review">
+            <input type="hidden" name="inventory" value="' . $prodInfo['invId']. '">';
+        $pd .= '<textarea rows="5" cols="50" name="review" id="review" required></textarea><br>
+            <input type="submit" value="Submit">
+        </form>'; 
+    }
     return $pd;
 }
 
@@ -248,4 +256,47 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
 function thumbnailList() {
     
     
+}
+
+function createReviewList($reviews) {
+    $reviewList = '<div class="reviews">';
+    foreach ($reviews as $review) {
+        $reviewList .= "<div class='review-box'>";
+        $reviewList .= "<h2>Review By <a href='/cow12005-acme/reviews?action=view-reviews-by-user&user-id=" . $review['clientId'] . "'>";
+        $reviewList .= $review['clientFirstname']. " " . $review['clientLastname'] . "</a></h2>";
+        $reviewList .= "<h3><a href='/cow12005-acme/products?action=product&invId=" . $review['invId'] . "'>";
+        $reviewList .= $review['invName'] . "</a></h3>";
+        $reviewList .= "<h4><a href='/cow12005-acme/reviews?action=view-specific-review&reviewId=" . $review['reviewId'] . "'>" . $review['reviewDate'] . "</a></h4>";
+        $reviewList .= "<p>" . $review['reviewText'] . "</p>";
+        if(!empty($_SESSION['clientData']['clientLevel']) || !empty($_SESSION['clientData']['clientId']))
+        {
+        if($_SESSION['clientData']['clientLevel'] > 1 || $_SESSION['clientData']['clientId'] == $review['clientId']) {
+        $reviewList .= "<div>" . "<a href='/cow12005-acme/reviews/?action=edit-review-form&reviewId=" . $review['reviewId'] . "'>Edit</a>--<a href='/cow12005-acme/reviews/?action=delete-review-form&reviewId=" . $review['reviewId'] . "'>Delete</a></div>";
+        }
+        }
+        $reviewList .= "</div>";
+    }
+    $reviewList .= '</div>';
+    
+    return $reviewList;
+}
+
+function createReviewPage($review) {
+    $reviewList = '<div class="reviews">';
+
+        $reviewList .= "<div class='review-box'>";
+        $reviewList .= "<h2>Review By <a href='/cow12005-acme/reviews?action=view-reviews-by-user&user-id=" . $review['clientId'] . "'>";
+        $reviewList .= $review['clientFirstname']. " " . $review['clientLastname'] . "</a></h2>";
+        $reviewList .= "<h3><a href='/cow12005-acme/products?action=product&invId=" . $review['invId'] . "'>";
+        $reviewList .= $review['invName'] . "</a></h3>";
+        $reviewList .= "<h4><a href='/cow12005-acme/reviews?action=view-specific-review&reviewId=" . $review['reviewId'] . "'>" . $review['reviewDate'] . "</a></h4>";
+        $reviewList .= "<p>" . $review['reviewText'] . "</p>";
+        if($_SESSION['clientData']['clientLevel'] > 1 || $_SESSION['clientData']['clientId'] == $review['clientId']) {
+        $reviewList .= "<div>" . "<a href='/cow12005-acme/reviews/?action=edit-review-form&reviewId=" . $review['reviewId'] . "'>Edit</a>--<a href='/cow12005-acme/reviews/?action=delete-review-form&reviewId=" . $review['reviewId'] . "'>Delete</a></div>";
+        }
+        $reviewList .= "</div>";
+
+    $reviewList .= '</div>';
+    
+    return $reviewList;
 }
