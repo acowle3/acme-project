@@ -24,6 +24,9 @@ $clientId = $_SESSION['clientData']['clientId'];
 if($level > 1) {
     echo '<a href="/cow12005-acme/products">Edit Products</a>';
 }
+if(isset($prodReviews)) {
+    echo $prodReviews;
+}
 ?>
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/cow12005-acme/common/footer.php'; ?>

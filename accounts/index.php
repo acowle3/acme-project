@@ -104,6 +104,8 @@ case "logout":
     header('location: /cow12005-acme/');
     break;
 case "admin":
+    $reviews = listByReviewsUser($_SESSION['clientData']['clientId']);
+    $prodReviews = createReviewList($reviews);
     include '../view/admin.php';
     break;
 case "edit-user":
