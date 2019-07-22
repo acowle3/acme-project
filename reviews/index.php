@@ -93,6 +93,8 @@ $action = filter_input(INPUT_POST, 'action');
          $reviewId = filter_input(INPUT_POST, "reviewId", FILTER_SANITIZE_NUMBER_INT);
          if(empty($reviewText) && empty( $reviewId)) {
              $message = "please don't empty the text field.";
+             include '../view/edit-review.php';
+                exit;
          }
          $updateNow = updateReview($reviewText, $reviewId);
          if ($updateNow) {
