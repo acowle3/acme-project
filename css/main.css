@@ -131,14 +131,14 @@ footer {
 }
 
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1290px) {
     .reviews-and-recipes {
     display: flex;
     flex-direction: row-reverse;
     }
     body{
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 75px;
+    margin-right: 75px;
     }
     
     #prod-display{

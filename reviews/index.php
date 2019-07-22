@@ -23,7 +23,23 @@ $action = filter_input(INPUT_POST, 'action');
          $reviewText = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
          $invId = filter_input(INPUT_POST, 'inventory', FILTER_SANITIZE_NUMBER_INT);
          
-         $regOutcome = newReview($reviewText, $invId, $_SESSION['clientData']['clientId']);
+         
+        if (empty($invId)) {
+            $message = '<p>No Item Selected.</p>';
+            include '../view/product-page.php';
+            exit;
+        }
+        if (empty($reviewText) || ctype_space($reviewText))
+        {
+            $message = '<p>Please Enter Data</p>';
+            $prodInfo = getProductInfo($invId);
+            $reviews = listReviews($invId);
+            $prodReviews = createReviewList($reviews);
+            $prodPage = productPageBuild($prodInfo);
+            include '../view/product-page.php';
+            exit;
+        }
+        $regOutcome = newReview($reviewText, $invId, $_SESSION['clientData']['clientId']);
         
         if($regOutcome === 1){
             
@@ -33,11 +49,6 @@ $action = filter_input(INPUT_POST, 'action');
             $message = "<p>Error Adding Review</p>";
             
         
-        }
-        if (empty($invId)) {
-            $message = '<p>No Item Selected.</p>';
-            include '../view/product-page.php';
-            exit;
         }
         $prodInfo = getProductInfo($invId);
         if (empty($prodInfo)) {
