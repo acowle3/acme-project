@@ -97,6 +97,13 @@ case 'login':
     $_SESSION['clientData'] = $clientData;
     setcookie('firstname', $_SESSION['clientData']['clientFirstname'], strtotime('+1 year'), '/');
     // Send them to the admin view
+    $firstName = $_SESSION['clientData']['clientFirstname'];
+    $lastName = $_SESSION['clientData']['clientLastname'];
+    $email = $_SESSION['clientData']['clientEmail'];
+    $level = $_SESSION['clientData']['clientLevel'];
+    $clientId = $_SESSION['clientData']['clientId'];
+    $reviews = listByReviewsUser($clientId);
+    $prodReviews = createReviewList($reviews);
     include '../view/admin.php';
     exit;
 case "logout":
