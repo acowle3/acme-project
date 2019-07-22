@@ -94,11 +94,13 @@ case 'login':
     array_pop($clientData);
     // Store the array into the session
     $_SESSION['clientData'] = $clientData;
+    setcookie('firstname', $_SESSION['clientData']['clientFirstname'], strtotime('+1 year'), '/');
     // Send them to the admin view
     include '../view/admin.php';
     exit;
 case "logout":
     session_destroy();
+    setcookie('firstname', null, -1, '/'); 
     header('location: /cow12005-acme/');
     break;
 case "admin":
