@@ -91,7 +91,7 @@ $action = filter_input(INPUT_POST, 'action');
      case 'edit-review':
          $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING);
          $reviewId = filter_input(INPUT_POST, "reviewId", FILTER_SANITIZE_NUMBER_INT);
-         if(empty($reviewText) && empty( $reviewId)) {
+         if(empty($reviewText)) {
              $message = "please don't empty the text field.";
              include '../view/edit-review.php';
                 exit;
