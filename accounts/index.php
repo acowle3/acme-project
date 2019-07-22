@@ -5,6 +5,7 @@ session_start();
  require_once '../model/acme-model.php';
 require_once '../model/accounts-model.php';
  require_once '../library/functions.php';
+ require_once '../model/reviews-model.php';
  $categories = getCategories();
  
 
@@ -104,7 +105,12 @@ case "logout":
     header('location: /cow12005-acme/');
     break;
 case "admin":
-    $reviews = listByReviewsUser($_SESSION['clientData']['clientId']);
+    $firstName = $_SESSION['clientData']['clientFirstname'];
+    $lastName = $_SESSION['clientData']['clientLastname'];
+    $email = $_SESSION['clientData']['clientEmail'];
+    $level = $_SESSION['clientData']['clientLevel'];
+    $clientId = $_SESSION['clientData']['clientId'];
+    $reviews = listByReviewsUser($clientId);
     $prodReviews = createReviewList($reviews);
     include '../view/admin.php';
     break;

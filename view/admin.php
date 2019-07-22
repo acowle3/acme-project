@@ -5,11 +5,7 @@ if (!$_SESSION['loggedin']) {
     header("location: /cow12005-acme/?action=home");
 }
 
-$firstName = $_SESSION['clientData']['clientFirstname'];
-$lastName = $_SESSION['clientData']['clientLastname'];
-$email = $_SESSION['clientData']['clientEmail'];
-$level = $_SESSION['clientData']['clientLevel'];
-$clientId = $_SESSION['clientData']['clientId'];
+
 
 ?>
 
