@@ -267,7 +267,7 @@ function createReviewList($reviews) {
         $reviewList .= "<h3><a href='/cow12005-acme/products?action=product&invId=" . $review['invId'] . "'>";
         $reviewList .= $review['invName'] . "</a></h3>";
         $reviewList .= "<h4><a href='/cow12005-acme/reviews?action=view-specific-review&reviewId=" . $review['reviewId'] . "'>" . $review['reviewDate'] . "</a></h4>";
-        $reviewList .= "<p>" . $review['reviewText'] . "</p>";
+        $reviewList .= "<p>" . nl2br($review['reviewText']) . "</p>";
         if(!empty($_SESSION['clientData']['clientLevel']) || !empty($_SESSION['clientData']['clientId']))
         {
         if($_SESSION['clientData']['clientLevel'] > 1 || $_SESSION['clientData']['clientId'] == $review['clientId']) {
@@ -290,7 +290,7 @@ function createReviewPage($review) {
         $reviewList .= "<h3><a href='/cow12005-acme/products?action=product&invId=" . $review['invId'] . "'>";
         $reviewList .= $review['invName'] . "</a></h3>";
         $reviewList .= "<h4><a href='/cow12005-acme/reviews?action=view-specific-review&reviewId=" . $review['reviewId'] . "'>" . $review['reviewDate'] . "</a></h4>";
-        $reviewList .= "<p>" . $review['reviewText'] . "</p>";
+        $reviewList .= "<p>" . nl2br($review['reviewText']) . "</p>";
         if($_SESSION['clientData']['clientLevel'] > 1 || $_SESSION['clientData']['clientId'] == $review['clientId']) {
         $reviewList .= "<div>" . "<a href='/cow12005-acme/reviews/?action=edit-review-form&reviewId=" . $review['reviewId'] . "'>Edit</a>--<a href='/cow12005-acme/reviews/?action=delete-review-form&reviewId=" . $review['reviewId'] . "'>Delete</a></div>";
         }

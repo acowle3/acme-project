@@ -91,8 +91,9 @@ $action = filter_input(INPUT_POST, 'action');
      case 'edit-review':
          $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING);
          $reviewId = filter_input(INPUT_POST, "reviewId", FILTER_SANITIZE_NUMBER_INT);
-         if(empty($reviewText)) {
+         if(empty($reviewText) && empty( $reviewId) || ctype_space($reviewText)) {
              $message = "please don't empty the text field.";
+             $reviewInfo = listReview($reviewId);
              include '../view/edit-review.php';
                 exit;
          }
@@ -105,7 +106,8 @@ $action = filter_input(INPUT_POST, 'action');
                 exit;
         } else {
             $reviewInfo = listReview($reviewId);
-                $message = "<p>Error. The product was not altered.</p>";
+            
+                $message = "<p>Error. The review was not altered.</p>";
                 include '../view/edit-review.php';
                 exit;
         }
